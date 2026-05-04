@@ -138,38 +138,36 @@ function makeFixture() {
   const daysAgo = (n: number) =>
     new Date(now.getTime() - n * 86_400_000).toISOString();
 
-  // Pick real seeded badge IDs across tiers and categories.
+  // Real seeded badge IDs from the production catalog (Hermes scan_snapshot).
   const unlocked = [
     {
-      id: "agent_autonomy_first_steps",
+      id: "let_him_cook",
       tier: "copper" as const,
       unlocked_at: daysAgo(30),
     },
     {
-      id: "tool_mastery_first_edit",
-      tier: "copper" as const,
+      id: "claude_confidant",
+      tier: "gold" as const,
       unlocked_at: daysAgo(28),
     },
     {
-      id: "tool_mastery_bash_brawler",
+      id: "config_surgeon",
       tier: "silver" as const,
       unlocked_at: daysAgo(15),
     },
     {
-      id: "agent_autonomy_toolchain_maxxer",
-      tier: "gold" as const,
+      id: "browser_possession",
+      tier: "copper" as const,
       unlocked_at: daysAgo(7),
-      progress_num: 52,
-      progress_den: 70,
     },
     {
-      id: "memory_keeper",
-      tier: "silver" as const,
+      id: "screenshot_hunter",
+      tier: "gold" as const,
       unlocked_at: daysAgo(3),
     },
     {
-      id: "secret_5am_club",
-      tier: "silver" as const,
+      id: "model_sommelier",
+      tier: "gold" as const,
       unlocked_at: minutesAgo(120),
     },
   ];

@@ -34,19 +34,25 @@ export async function validateSubmission(
     return { ok: false, reason: "scan_timestamp_in_future" };
   }
 
-  // No 5+ unlocks in the same second (unrealistic mass insert).
+  // Burst detection: 5+ unlocks in the same second mid-stream is suspicious.
+  // BUT: Hermes Achievements stamps every badge it detects on first scan
+  // with the scan timestamp, so a single shared timestamp == first-run
+  // signature, not a forgery. We only flag bursts at non-earliest seconds.
   const bySecond = new Map<string, number>();
   for (const u of state.unlocked) {
     const sec = u.unlocked_at.slice(0, 19); // YYYY-MM-DDTHH:MM:SS
     bySecond.set(sec, (bySecond.get(sec) ?? 0) + 1);
   }
-  for (const [sec, count] of bySecond) {
-    if (count >= 5) {
-      return {
-        ok: false,
-        reason: "implausible_burst_unlocks",
-        detail: { second: sec, count },
-      };
+  if (bySecond.size > 1) {
+    const earliestSec = [...bySecond.keys()].sort()[0];
+    for (const [sec, count] of bySecond) {
+      if (count >= 5 && sec !== earliestSec) {
+        return {
+          ok: false,
+          reason: "implausible_burst_unlocks",
+          detail: { second: sec, count },
+        };
+      }
     }
   }
 

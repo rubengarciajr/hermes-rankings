@@ -96,6 +96,6 @@ export function getCliVersion(): string {
   if (_version) return _version;
   // Kept in sync with packages/cli/package.json#version. tsup's CJS-friendly
   // bundle doesn't reliably resolve import.meta.url, so we hardcode + ship.
-  _version = "1.0.0";
+  _version = "1.0.1";
   return _version;
 }
