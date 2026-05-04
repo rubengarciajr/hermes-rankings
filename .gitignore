@@ -29,3 +29,4 @@ drizzle/meta
 # Reference (kept for design reference, not source)
 # (reference_web/ stays in repo)
 .vercel
+*.tsbuildinfo
