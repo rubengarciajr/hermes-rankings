@@ -59,16 +59,20 @@ function makeLimiter(opts: {
 }
 
 export const limiters = {
+  // Register limits are deliberately generous because a) the actual dedupe
+  // is the unique-fingerprint check inside /register/start, b) legit users
+  // retry after schema bumps, browser closes, network blips, etc.
   registerStartByIp: makeLimiter({
     prefix: "reg-start-ip",
     windowSec: 3600,
-    max: 3,
+    max: 10,
   }),
   registerStartByFingerprint: makeLimiter({
     prefix: "reg-start-fp",
-    windowSec: 86400,
-    max: 1,
+    windowSec: 3600,
+    max: 10,
   }),
+  // Submit limits are tight — once registered, you shouldn't need many.
   submitByKey: makeLimiter({
     prefix: "submit-key",
     windowSec: 60,
