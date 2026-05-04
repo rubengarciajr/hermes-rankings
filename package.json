@@ -1,0 +1,27 @@
+{
+  "name": "hermesranker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public leaderboard for Hermes Agent achievements",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:generate": "pnpm --filter @hermesranker/db generate",
+    "db:migrate": "pnpm --filter @hermesranker/db migrate",
+    "db:seed": "pnpm --filter @hermesranker/db seed",
+    "cli:build": "pnpm --filter hermes-rank build",
+    "cli:dev": "pnpm --filter hermes-rank dev"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  }
+}

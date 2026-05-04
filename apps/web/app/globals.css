@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  /* Hermes color palette */
+  --color-background: #041C1C;
+  --color-background-deep: #000000;
+  --color-background-soft: #0a2424;
+
+  --color-foreground: #ffe6cb;
+  --color-foreground-muted: rgba(255, 230, 203, 0.7);
+  --color-foreground-faint: rgba(255, 230, 203, 0.4);
+
+  --color-accent-gold: #ffbd38;
+  --color-accent-amber: #ffac02;
+  --color-accent-bright: #ffff89;
+
+  --color-tier-copper: #b87333;
+  --color-tier-silver: #c0c0c0;
+  --color-tier-gold: #ffbd38;
+  --color-tier-diamond: #a8e6f0;
+  --color-tier-olympian: #ffff89;
+
+  --color-success: #4ade80;
+  --color-danger: #fb2c36;
+
+  --color-border-faint: rgba(255, 230, 203, 0.15);
+  --color-border-soft: rgba(255, 230, 203, 0.25);
+  --color-border-strong: rgba(255, 230, 203, 0.5);
+
+  /* Typography
+     - Body / UI / labels: JetBrains Mono (modern, code-friendly mono)
+     - Headings / brand: Silkscreen (clean pixel/bitmap display font)
+     The CSS vars are populated by next/font in app/layout.tsx. */
+  --font-mono: var(--font-jetbrains), ui-monospace, "JetBrains Mono",
+    "Courier New", monospace;
+  --font-sans: var(--font-jetbrains), ui-monospace, monospace;
+  --font-display: var(--font-silkscreen), ui-monospace, monospace;
+
+  /* Tracking */
+  --tracking-label: 0.1875rem;
+  --tracking-heading: 0.04rem;
+
+  /* Body type scale — tighter than the v0.1 baseline. */
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.55;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  /* Pixel display font for marketing headings.
+     Silkscreen has no italics and only 400/700; let it speak for itself. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.15;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-gold);
+    color: var(--color-background-deep);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background-deep);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-soft);
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-strong);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+}
+
+@utility label-sm {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+}
+
+@utility glow-gold {
+  box-shadow: 0 0 24px rgba(255, 189, 56, 0.35);
+}
+
+@utility glow-tier-copper {
+  box-shadow: 0 0 24px rgba(184, 115, 51, 0.4);
+}
+@utility glow-tier-silver {
+  box-shadow: 0 0 24px rgba(192, 192, 192, 0.4);
+}
+@utility glow-tier-gold {
+  box-shadow: 0 0 24px rgba(255, 189, 56, 0.5);
+}
+@utility glow-tier-diamond {
+  box-shadow: 0 0 28px rgba(168, 230, 240, 0.5);
+}
+@utility glow-tier-olympian {
+  box-shadow: 0 0 32px rgba(255, 255, 137, 0.6);
+}
+
+@utility blend-additive {
+  mix-blend-mode: plus-lighter;
+}
+
+@utility border-double-gold {
+  border-style: double;
+  border-width: 4px;
+  border-color: var(--color-accent-gold);
+}
