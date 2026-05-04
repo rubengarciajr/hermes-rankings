@@ -26,6 +26,18 @@ export function SiteFooter() {
           >
             Transparency
           </Link>
+          <Link
+            href="/privacy"
+            className="label-sm text-foreground-muted hover:text-foreground transition"
+          >
+            Privacy
+          </Link>
+          <Link
+            href="/terms"
+            className="label-sm text-foreground-muted hover:text-foreground transition"
+          >
+            Terms
+          </Link>
           <a
             href="https://hermes-agent.nousresearch.com"
             target="_blank"
